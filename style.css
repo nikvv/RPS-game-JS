@@ -122,9 +122,6 @@
 }
 
 #stage-info{
-  position:absolute;
-  right: 2em;
-  top: 2em;
   font-size: .5em;
 }
 
@@ -150,7 +147,7 @@
 #monster-baloon{
   width:20vw;
   height: 11vh;
-  max-width: 220px;
+  min-width: 180px;
   border: 1px solid black;
   font-size: 1.2rem;
   display: flex;

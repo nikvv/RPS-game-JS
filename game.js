@@ -188,13 +188,17 @@ for(let i = 0; i<elemBattleOption.children.length; i++){
     });
 }
 
-//Initialize Battle
+function initializeStage(){
+//Initialize Round
 initializePlayer(objectPlayer);
 initializeEnemy(objectEnemy);
 updateHpInfo();
 updateStage();
 elemBattleOption.style.visibility = `visible`;  
-//Initialize Battle
+//Initialize Round
+}
+
+initializeStage();
 
 
 
