@@ -224,7 +224,7 @@ function initializeStage() {
     elemNextButton.disabled = true;
     elemBattleOption.style.visibility = `visible`;
     elemBattleOption.style.display = `flex`;
-    updateMessageBox(`Choose your option`)
+    updateMessageBox(`Choose your option`);
     //Initialize Round
 }
 elemNextButton.addEventListener('click' ,initializeStage);
