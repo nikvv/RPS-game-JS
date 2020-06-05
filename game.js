@@ -158,7 +158,7 @@ function checkResult() {
     else if (playerValue == 3 && enemyValue == 2) {
         return 1;
     }
-    else if (playerValue == 1 && enemyValue == 1) {
+    else if (playerValue == 3 && enemyValue == 1) {
         return 2;
     }
 }
