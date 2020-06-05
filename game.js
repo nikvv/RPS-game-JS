@@ -224,6 +224,7 @@ function initializeStage() {
     elemNextButton.disabled = true;
     elemBattleOption.style.visibility = `visible`;
     elemBattleOption.style.display = `flex`;
+    enemySpritesBody[0].style.filter = `none`;
     updateMessageBox(`Choose your option`);
     //Initialize Round
 }
