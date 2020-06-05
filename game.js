@@ -178,6 +178,7 @@ for(let i = 0; i<elemBattleOption.children.length; i++){
 
         if(objectEnemy.currHp === 0){
             elemBattleOption.style.visibility = `hidden`;
+            enemySpritesBody[0].style.filter = `grayscale(100%)`;
             updateMessageBox(`YOU WIN!`)
         }
         else if(objectPlayer.currHp === 0){
