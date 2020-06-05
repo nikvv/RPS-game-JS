@@ -95,6 +95,10 @@
   visibility: hidden;
   margin-top: 1em;
 }
+#next-option{
+display: flex;
+justify-content: center;
+}
 
 .skill-button {
   width: 20vw;
@@ -105,7 +109,15 @@
 .execute-button{
   width: 8em;
   height: 12em;
+}
 
+#next-stage{
+  width: 50vw;
+  height: 15vh;
+  font-size: 1rem;
+  margin-top: 1em;
+  visibility: hidden;
+  display: none;
 }
 /* Battle Option CSS */
 

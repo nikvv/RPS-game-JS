@@ -4,13 +4,13 @@ const elemMessageBox = document.getElementById(`message-box`);
 const elemParagraphs = elemMessageBox.getElementsByTagName(`p`);
 const elemStageInfo = document.getElementById(`stage-info`);
 const stageInfoText = elemStageInfo.getElementsByTagName(`h1`);
+const elemNextButton = document.getElementById(`next-stage`);
 
 
 const elemPlayerInfo = document.getElementById(`player-info`);
 const elemEnemyInfo = document.getElementById(`enemy-info`);
 const elemBattleOption = document.getElementById(`battle-option`);
 const elemEnemySprite = document.getElementById(`monster-sprite`);
-const elemBattleOptionQuery = document.querySelectorAll(`#battle-option button`);
 
 
 const playerName = elemPlayerInfo.getElementsByClassName(`name`);
@@ -24,9 +24,7 @@ const enemySpritesBody = elemEnemySprite.getElementsByClassName(`monster-body`);
 const enemyBaloon = document.getElementById(`monster-baloon`)
 //DOM ELEMENT
 
-console.log(elemBattleOption)
-console.log(elemBattleOption.children)
-console.log(elemBattleOptionQuery)
+
 //Initial database
 let currentStage = 0;
 
@@ -36,7 +34,7 @@ let playerValue = null;
 
 let EnemyBaseHp = 3;
 let enemyDefaultName = `Enemy`;
-let enemyValue =null;
+let enemyValue = null;
 
 let objectPlayer = {};
 let objectEnemy = {};
@@ -62,7 +60,7 @@ function initializeEnemy(enemy) {
     enemy.name = enemyDefaultName;
     enemy.maxHp = EnemyBaseHp;
     enemy.currHp = enemy.maxHp;
-    enemySpritesBody[0].style.visibility = `visible`;  
+    enemySpritesBody[0].style.visibility = `visible`;
     enemyName[0].innerHTML = enemy.name;
 }
 
@@ -96,19 +94,19 @@ function updateHpInfo() {
 }
 
 function damage(value) {
-if(value === 1){
-objectEnemy.currHp -= 1
-if(objectEnemy.currHp<0){objectEnemy.currHp = 0};
-updateMessageBox(`You win! deal 1 damage to enemy`)
-}
-else if(value === 2){
-    objectPlayer.currHp -= 1
-    if(objectPlayer.currHp<0){objectPlayer.currHp = 0};
-    updateMessageBox(`You lose! take 1 damage`)
-}
-else{
-    updateMessageBox(`It's a tie!`)
-}
+    if (value === 1) {
+        objectEnemy.currHp -= 1
+        if (objectEnemy.currHp < 0) { objectEnemy.currHp = 0 };
+        updateMessageBox(`You win! deal 1 damage to enemy`)
+    }
+    else if (value === 2) {
+        objectPlayer.currHp -= 1
+        if (objectPlayer.currHp < 0) { objectPlayer.currHp = 0 };
+        updateMessageBox(`You lose! take 1 damage`)
+    }
+    else {
+        updateMessageBox(`It's a tie!`)
+    }
     updateHpInfo();
 }
 
@@ -122,18 +120,25 @@ function updateStage() {
     currentStage++
     stageInfoText[0].innerText = `Current Stage: ${currentStage}`;
 }
-function randomChoices(limit){
-    let choices = Math.floor(Math.random()*limit)+1;
-    if(choices === 1){
+function randomChoices(limit) {
+    let choices = Math.floor(Math.random() * limit) + 1;
+    if (choices === 1) {
         enemyBaloon.innerHTML = `Rock`;
     }
-    else if(choices === 2){
+    else if (choices === 2) {
         enemyBaloon.innerHTML = `Paper`;
     }
-    else if(choices === 3){
+    else if (choices === 3) {
         enemyBaloon.innerHTML = `Scissors`;
     }
-   return choices;
+    return choices;
+}
+
+function animateChoices(){
+    for (let i = 0; i < 10; i++) {
+        setTimeout(function(){enemyBaloon.innerHTML = randomChoices(3)},1000);
+        
+    }
 }
 
 function checkResult() {
@@ -162,43 +167,70 @@ function checkResult() {
         return 2;
     }
 }
+function toggleNextStage() {
 
-for(let i = 0; i<elemBattleOption.children.length; i++){
-    elemBattleOption.children[i].addEventListener('click', function (e) {
-        console.log(e.target);
-        playerValue = e.currentTarget.value;
-        enemyValue = randomChoices(3);
-        console.log('this is player value ' + playerValue);
-        console.log(`this is computer value ${enemyValue}`);
+    if (elemNextButton.disabled === true) {
+        elemNextButton.style.visibility = `visible`;
+        elemNextButton.style.display = `inline`;
+        elemNextButton.disabled = false;
+    }
+    else {
+        elemNextButton.style.visibility = `hidden`;
+        elemNextButton.style.display = `none`;
+    }
+}
+function optionButtonListener() {
+    for (let i = 0; i < elemBattleOption.children.length; i++) {
+        elemBattleOption.children[i].addEventListener('click', function (e) {
+            playerValue = e.currentTarget.value;
+            enemyValue = randomChoices(3);
+            console.log('this is player value ' + playerValue);
+            console.log(`this is computer value ${enemyValue}`);
 
-        let result = checkResult();
+            let result = checkResult();
 
-        console.log(`this is battle result ${result}`)
-        damage(result);
+            console.log(`this is battle result ${result}`)
+            damage(result);
 
-        if(objectEnemy.currHp === 0){
-            elemBattleOption.style.visibility = `hidden`;
-            enemySpritesBody[0].style.filter = `grayscale(100%)`;
-            updateMessageBox(`YOU WIN!`)
-        }
-        else if(objectPlayer.currHp === 0){
-            elemBattleOption.style.visibility = `hidden`;
-            updateMessageBox(`YOU LOSE!`)
-        }
-    });
+            if (objectEnemy.currHp === 0) {
+                elemBattleOption.style.display = `none`;
+                enemySpritesBody[0].style.filter = `grayscale(100%)`;
+                toggleNextStage();
+                updateMessageBox(`YOU WIN!`)
+            }
+            else if (objectPlayer.currHp === 0) {
+                elemBattleOption.style.display = `none`;
+                updateMessageBox(`YOU LOSE!
+                Final Score: ${currentStage}`);
+            }
+        });
+    }
 }
 
-function initializeStage(){
-//Initialize Round
+function hideOptionButton() {
+    for (let i = 0; i < elemBattleOption.children.length; i++) {
+        elemBattleOption.children[i].style.display = `none`;
+    }
+
+}
+
+function initializeStage() {
+    //Initialize Round
+    updateStage();
+    if(currentStage % 3 === 0){EnemyBaseHp++};
+    initializeEnemy(objectEnemy);
+    updateHpInfo();
+    elemNextButton.style.display = `none`;
+    elemNextButton.disabled = true;
+    elemBattleOption.style.visibility = `visible`;
+    elemBattleOption.style.display = `flex`;
+    updateMessageBox(`Choose your option`)
+    //Initialize Round
+}
+elemNextButton.addEventListener('click' ,initializeStage);
 initializePlayer(objectPlayer);
-initializeEnemy(objectEnemy);
-updateHpInfo();
-updateStage();
-elemBattleOption.style.visibility = `visible`;  
-//Initialize Round
-}
-
 initializeStage();
+optionButtonListener();
 
 
 
