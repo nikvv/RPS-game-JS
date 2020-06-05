@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  font-family: "Press Start 2P", cursive;
+}
+
+.body{
+  height: 100vh;
+}
+/* ===========Character info CSS===============*/
+#player-info {
+  height: 10vh;
+  width: 30vw;
+  min-width: 190px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#enemy-info {
+  height: 10vh;
+  width: 30vw;
+  min-width: 190px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  margin-top: 0.3em;
+  font-size: 1rem;
+}
+
+.hp-text {
+    margin-top: .5em;
+  text-align: center;
+  font-size: 1rem;
+}
+.bar-border {
+  width: 90%;
+  border: 1px solid black;
+  border-radius: 1em;
+
+  margin-top:.5em;
+}
+
+.bar {
+  padding: 1vh;
+  border-radius: 1em;
+  width: 80%;
+  height: auto;
+}
+
+.bar--green {
+  background-color: #4caf50;
+}
+
+.bar--yellow {
+  background-color: rgb(228, 225, 56);
+}
+
+.bar--red {
+  background-color: rgb(228, 90, 56);
+}
+
+/* ===========Character info CSS===============*/
+
+
+/* ===========Message Box CSS===============*/
+#message-box {
+  height: 20vh;
+  width: 90vw;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 1.8em;
+  border: 1px solid black;
+  align-items: center;
+
+  font-size: 1rem ;
+}
+
+#message-box p {
+  margin: 1em;
+}
+/* ===========Message Box CSS===============*/
+
+/* Battle Option CSS */
+#battle-option {
+  display: flex;
+  justify-content: space-evenly;
+  visibility: hidden;
+  margin-top: 1em;
+}
+
+.skill-button {
+  width: 20vw;
+  height: 12em;
+  font-size: 0.7rem;
+}
+
+.execute-button{
+  width: 8em;
+  height: 12em;
+
+}
+/* Battle Option CSS */
+
+/* Game Area CSS */
+.battle-arena {
+  border: 1px solid black;
+  height: 45vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+#stage-info{
+  position:absolute;
+  right: 2em;
+  top: 2em;
+  font-size: .5em;
+}
+
+.player-arena{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+/* Game Area CSS */
+
+/* Enemy Visual CSS */
+
+#monster-sprite{
+  display:flex;
+  justify-content: center;
+}
+.monster-body {
+  width: 156px;
+  height: 105px;
+}
+
+#monster-baloon{
+  width:20vw;
+  height: 11vh;
+  max-width: 220px;
+  border: 1px solid black;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enemy Visual CSS */
+
+/* Element image */
+.element-info{
+    position: absolute;
+    left:0;
+    top:0;
+}
