@@ -119,6 +119,15 @@ justify-content: center;
   visibility: hidden;
   display: none;
 }
+
+#play-again{
+  width: 50vw;
+  height: 15vh;
+  font-size: 1rem;
+  margin-top: 1rem;
+  visibility: hidden;
+  display: none;
+}
 /* Battle Option CSS */
 
 /* Game Area CSS */
